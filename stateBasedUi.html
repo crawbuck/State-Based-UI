@@ -4,6 +4,7 @@
     <button>Add to your list</button>
 </form>
 <div id="list" aria-live="polite"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.9/purify.min.js"></script>
 <script>
 // Data State
 var data = {
@@ -17,9 +18,9 @@ var template = function () {
 	if (data.listItems.length < 1) return '<p><em>You do not have any list items yet. Try adding one with the form above.</em></p>';
 
 	// If there are
-	return '<ul>' + data.listItems.map(function (item) {
+	return '<ul>' + DOMPurify.sanitize(data.listItems.map(function (item) {
 		return '<li>' + item + '</li>';
-	}).join('') + '</ul>';
+	}).join('')) + '</ul>';
 
 };
 
